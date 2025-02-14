@@ -34,15 +34,18 @@ function App() {
     <main>
       <h1>My todos</h1>
       <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li 
-          onClick={() => deleteTodo(todo.id)}
-          key={todo.id}>{todo.content}</li>
-          
 
+      {todos.map((todo) => (
+          <ol key={todo.id} onClick={() => deleteTodo(todo.id)}>
+            <div>Content: {todo.content}</div>
+            <div>Position: {todo.position}</div>
+            <div>Company: {todo.company}</div>
+            <div>Date: {todo.date}</div>
+            <div>Is Done: {todo.isDone ? "Yes" : "No"}</div>
+
+          </ol>
         ))}
-      </ul>
+
       <div>
         🥳 App successfully hosted. Try creating a new todo.
         <br />
