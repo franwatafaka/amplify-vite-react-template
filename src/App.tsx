@@ -16,7 +16,13 @@ function App() {
   }, []);
 
   function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
+    client.models.Todo.create({
+      position: window.prompt("Enter position") || "",
+      content: window.prompt("Enter content") || "",
+      company: window.prompt("Enter company") || "",
+      date: window.prompt("Enter date") || "",
+      isDone: false // Setting default value for new todos
+    });
   }
 
     
@@ -33,6 +39,8 @@ function App() {
           <li 
           onClick={() => deleteTodo(todo.id)}
           key={todo.id}>{todo.content}</li>
+          
+
         ))}
       </ul>
       <div>
