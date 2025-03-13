@@ -9,11 +9,13 @@ function App() {
   const { signOut } = useAuthenticator();
   const [todos, setTodos] = useState<Array<Schema["Toda"]["type"]>>([]);
 
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
+useEffect(() => {
+  client.models.Todo.observeQuery().subscribe({
+    next: (data) => {
+      setTodos(null as any); // Provoca un error de tipo en la renderización
+    },
+  });
+}, []);
 
   function createTodo() {
     client.models.Todo.create({
